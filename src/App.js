@@ -25,8 +25,8 @@ const FILTER_MAP = {
 const FILTER_NAMES = Object.keys(FILTER_MAP);
 
 function App(props) {
-  const [tasks, setTasks] = useState(props.tasks);
-  const [filter, setFilter] = useState('All');
+  const [tasks, setTasks] = client.hooks.useCloudState("tasks", props.tasks);
+  const [filter, setFilter] = client.hooks.useCloudState("filter", 'All');
 
   function toggleTaskCompleted(id) {
     const updatedTasks = tasks.map(task => {
