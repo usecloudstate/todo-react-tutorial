@@ -3,7 +3,10 @@ import Form from "./components/Form";
 import FilterButton from "./components/FilterButton";
 import Todo from "./components/Todo";
 import { nanoid } from "nanoid";
+import { CloudStateClient } from '@usecloudstate/react-core';
+import { AuthProvider, config } from "@usecloudstate/react-web"
 
+const client = new CloudStateClient('solitary-bush-KOaZZPK0', config)
 
 function usePrevious(value) {
   const ref = useRef();
@@ -100,6 +103,7 @@ function App(props) {
 
   return (
     <div className="todoapp stack-large">
+      <AuthProvider client={client} />
       <Form addTask={addTask} />
       <div className="filters btn-group stack-exception">
         {filterList}
